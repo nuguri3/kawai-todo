@@ -82,4 +82,9 @@ class ArticlesController extends Controller
     {
        return __METHOD__ . '은(는) 다음기본키를 가진 Article 모델을 삭제합니다.:' . $id; 
     }
+
+   public function hahaha($id)
+   {
+	return 'aaa';
+   }
 }
