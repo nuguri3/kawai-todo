@@ -229,4 +229,5 @@ return [
     ],
     
     'locale' => 'ko',
+
 ];
