@@ -47,9 +47,14 @@ class ArticlesController extends Controller
 		return back()->with('flash_message', '글이 저장되지 않았습니다.')
 			     ->withInput();
 	}
+	
+	var_dump('이벤트를 던집니다.');
+	#event('article.created', [$article]);
+	event(new \App\Events\ArticlesEvent($article));
+	var_dump('이벤트를 던졌습니다.');
 
 	return redirect(route('articles.index'))
-		->with('flash_message', '작성하신 글이 저장되었습니다.');
+       		->with('flash_message', '작성하신 글이 저장되었습니다.');
        #return __METHOD__ . '은(는) 사용자의 입력한 폼데이터로 새로운 Article 컬렉션을 만듭니다.'; 
     }
 
