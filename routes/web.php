@@ -13,8 +13,8 @@
 
 #Route::get('/', 'WelcomeController@index');
 #Route::resource('articles', 'ArticlesController');
-Auth::routes();
-Route::resource('articles', 'ArticlesController');
+#Auth::routes();
+#Route::resource('articles', 'ArticlesController');
 
 #DB::listen(function ($query){
 #	var_dump($query->sql);
@@ -23,6 +23,21 @@ Route::resource('articles', 'ArticlesController');
 
 
 
-Auth::routes();
+#Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+#Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('mail', function() {
+	$article = App\Article::with('user')->find(1);
+
+	return Mail::send(
+		'emails.articles.created',
+		compact('article'),
+		function ($message) use ($article) {
+			$message->to('nuguri3@gmail.com');
+			$message->subject('새 글이 등록되었습니다. -'. $article->title);
+		}
+	);
+});
+
+
