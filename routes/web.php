@@ -26,6 +26,16 @@
 #Auth::routes();
 
 #Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('docs/{file?}', function ($file = null) {
+	$text = (new App\Documentation)->get($file);
+
+	return app(ParsedownExtra::class)->text($text);
+
+});
+
+
+
 /*
 Route::get('mail', function() {
 	$article = App\Article::with('user')->find(1);
@@ -41,6 +51,7 @@ Route::get('mail', function() {
 });
 */
 
+/*
 Route::get('markdown', function() {
 	$text =<<<EOT
 # 마크다운 예제 1
@@ -60,7 +71,7 @@ EOT;
 	return app(ParsedownExtra::class)->text($text);
 
 });
-
+*/
 
 
 
